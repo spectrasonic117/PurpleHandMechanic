@@ -31,6 +31,9 @@ public class PlayerInteractListener implements Listener {
         velocity.setY(0.9); // Adjusted to roughly achieve a 5-block jump height
         player.setVelocity(velocity);
 
+        // Play the sound
+        player.playSound(player.getLocation(), "minecraft:retrieve1", 1.0f, 1.0f);
+
         // Spawn END_ROD particles around the player
         player.getWorld().spawnParticle(Particle.END_ROD, player.getLocation(), 20, 0.5, 0.5, 0.5, 0.0);
     }
