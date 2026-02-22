@@ -29,8 +29,8 @@ dependencies {
     implementation "co.aikar:acf-paper:0.5.1-SNAPSHOT"
 
     // Lombok
-    compileOnly "org.projectlombok:lombok:1.18.36"
-    annotationProcessor("org.projectlombok:lombok:1.18.36")
+    compileOnly "org.projectlombok:lombok:1.18.40"
+    annotationProcessor("org.projectlombok:lombok:1.18.40")
 
     // Minimessage - Adventure
     implementation "net.kyori:adventure-text-minimessage:4.18.0"
