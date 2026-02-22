@@ -23,13 +23,14 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT") // Paper
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT") // Paper
 
     // ACF Aikar
     implementation "co.aikar:acf-paper:0.5.1-SNAPSHOT"
 
     // Lombok
     compileOnly "org.projectlombok:lombok:1.18.36"
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
 
     // Minimessage - Adventure
     implementation "net.kyori:adventure-text-minimessage:4.18.0"
@@ -41,6 +42,8 @@ dependencies {
 shadowJar {
     relocate "co.aikar.commands", "com.spectrasonic.PurpleHandMechanic.acf"
     relocate "co.aikar.locales", "com.spectrasonic.PurpleHandMechanic.locales"
+    destinationDirectory = file("${rootDir}/out")
+    archiveFileName = "${rootProject.name}-${version}.jar"
 }
 
 build.dependsOn shadowJar

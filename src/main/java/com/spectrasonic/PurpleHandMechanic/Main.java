@@ -1,7 +1,6 @@
 package com.spectrasonic.PurpleHandMechanic;
 
-import com.spectrasonic.PurpleHandMechanic.Listeners.PlayerProjectileListener;
-import com.spectrasonic.PurpleHandMechanic.Listeners.PlayerInteractListener;
+import com.spectrasonic.PurpleHandMechanic.Manager.ListenerManager;
 import com.spectrasonic.PurpleHandMechanic.Utils.MessageUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,7 +26,6 @@ public final class Main extends JavaPlugin {
     }
 
     public void registerEvents() {
-        getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerProjectileListener(this), this);
+        new ListenerManager(this).registerListener();
     }
 }

@@ -9,23 +9,31 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-public class PlayerInteractListener implements Listener {
+import com.spectrasonic.PurpleHandMechanic.Items.PurpleGrabPack;
+
+public class PurpleGrapPackListener implements Listener {
+    private final PurpleGrabPack purpleGrabPack;
+
+    public PurpleGrapPackListener() {
+        this.purpleGrabPack = new PurpleGrabPack();
+    }
+
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK)
+            return;
         Block block = event.getClickedBlock();
-        if (block == null || block.getType() != Material.AMETHYST_BLOCK) return;
+        if (block == null || block.getType() != Material.AMETHYST_BLOCK)
+            return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
-        if (item == null || item.getType() != Material.PAPER) return;
-        if (!item.hasItemMeta()) return;
-        ItemMeta meta = item.getItemMeta();
-        if (!meta.hasCustomModelData() || meta.getCustomModelData() != 128) return;
+        if (!purpleGrabPack.isSimilar(item))
+            return;
 
-        // Apply a launch: upward to approximately 5 blocks high and a slight forward push.
+        // Apply a launch: upward to approximately 5 blocks high and a slight forward
+        // push.
         Vector forward = player.getLocation().getDirection().setY(0).normalize();
         Vector velocity = forward.multiply(0.3);
         velocity.setY(0.9); // Adjusted to roughly achieve a 5-block jump height
