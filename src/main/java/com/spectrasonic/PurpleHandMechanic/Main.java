@@ -9,7 +9,6 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        registerCommands();
         registerEvents();
         MessageUtils.sendStartupMessage(this);
 
@@ -19,10 +18,6 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         MessageUtils.sendShutdownMessage(this);
         MessageUtils.sendVeiMessage(this);
-    }
-
-    public void registerCommands() {
-        // Set Commands Here
     }
 
     public void registerEvents() {
