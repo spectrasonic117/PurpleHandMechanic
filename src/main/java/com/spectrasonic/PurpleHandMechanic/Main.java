@@ -8,16 +8,13 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         registerEvents();
         MessageUtils.sendStartupMessage(this);
-
     }
 
     @Override
     public void onDisable() {
         MessageUtils.sendShutdownMessage(this);
-        MessageUtils.sendVeiMessage(this);
     }
 
     public void registerEvents() {
