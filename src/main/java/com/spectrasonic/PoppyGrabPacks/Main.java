@@ -1,7 +1,7 @@
-package com.spectrasonic.PurpleHandMechanic;
+package com.spectrasonic.PoppyGrabPacks;
 
-import com.spectrasonic.PurpleHandMechanic.Manager.ListenerManager;
-import com.spectrasonic.PurpleHandMechanic.Utils.MessageUtils;
+import com.spectrasonic.PoppyGrabPacks.Manager.ListenerManager;
+import com.spectrasonic.PoppyGrabPacks.Utils.MessageUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {

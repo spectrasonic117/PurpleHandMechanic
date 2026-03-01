@@ -1,5 +1,5 @@
-name: PurpleHandMechanic
+name: PoppyGrabPacks
 version: '${version}'
-main: com.spectrasonic.PurpleHandMechanic.Main
+main: com.spectrasonic.PoppyGrabPacks.Main
 api-version: '1.21'
 authors: [Spectrasonic]

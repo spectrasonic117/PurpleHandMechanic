@@ -1,4 +1,4 @@
-package com.spectrasonic.PurpleHandMechanic.Listeners;
+package com.spectrasonic.PoppyGrabPacks.Listeners;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import com.spectrasonic.PurpleHandMechanic.Items.MagneticGrabPack;
+import com.spectrasonic.PoppyGrabPacks.Items.MagneticGrabPack;
 
 public class MagneticGrabPackListener implements Listener {
     private final MagneticGrabPack magneticGrabPack;

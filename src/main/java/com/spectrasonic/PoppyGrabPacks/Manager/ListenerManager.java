@@ -1,9 +1,9 @@
-package com.spectrasonic.PurpleHandMechanic.Manager;
+package com.spectrasonic.PoppyGrabPacks.Manager;
 
-import com.spectrasonic.PurpleHandMechanic.Listeners.MagneticGrabPackListener;
-import com.spectrasonic.PurpleHandMechanic.Listeners.OrangeGrapPackListener;
-import com.spectrasonic.PurpleHandMechanic.Listeners.PurpleGrapPackListener;
-import com.spectrasonic.PurpleHandMechanic.Main;
+import com.spectrasonic.PoppyGrabPacks.Listeners.MagneticGrabPackListener;
+import com.spectrasonic.PoppyGrabPacks.Listeners.OrangeGrapPackListener;
+import com.spectrasonic.PoppyGrabPacks.Listeners.PurpleGrapPackListener;
+import com.spectrasonic.PoppyGrabPacks.Main;
 
 public class ListenerManager {
 

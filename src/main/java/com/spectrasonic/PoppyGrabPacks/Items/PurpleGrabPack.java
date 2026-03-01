@@ -1,4 +1,4 @@
-package com.spectrasonic.PurpleHandMechanic.Items;
+package com.spectrasonic.PoppyGrabPacks.Items;
 
 import org.bukkit.Material;
 

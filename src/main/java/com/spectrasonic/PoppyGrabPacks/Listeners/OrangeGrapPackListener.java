@@ -1,4 +1,4 @@
-package com.spectrasonic.PurpleHandMechanic.Listeners;
+package com.spectrasonic.PoppyGrabPacks.Listeners;
 
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -11,8 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import com.spectrasonic.PurpleHandMechanic.Items.OrangeGrabPack;
-import com.spectrasonic.PurpleHandMechanic.Main;
+import com.spectrasonic.PoppyGrabPacks.Items.OrangeGrabPack;
+import com.spectrasonic.PoppyGrabPacks.Main;
 
 public class OrangeGrapPackListener implements Listener {
     private final Main plugin;

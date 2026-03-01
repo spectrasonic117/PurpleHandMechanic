@@ -1,4 +1,4 @@
-package com.spectrasonic.PurpleHandMechanic.Utils;
+package com.spectrasonic.PoppyGrabPacks.Utils;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -6,16 +6,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public final class MessageUtils {
 
     public static final String DIVIDER = "<gray>----------------------------------------</gray>";
-    public static final String PREFIX = "<gray>[<gold>GrabPackMechanics</gold>]</gray> <gold>»</gold> ";
+    public static final String PREFIX = "<dark_gray>[<gradient:#3ff5cf:#3fd2f5>PoppyGrabPacks</gradient>]</dark_gray> <green>»</green> ";
 
     private static final MiniMessage miniMessage = MiniMessage.miniMessage();
-
-    private MessageUtils() {
-        // Private constructor to prevent instantiation
-    }
 
     public static void sendMessage(CommandSender sender, String message) {
         sender.sendMessage(miniMessage.deserialize(PREFIX + message));

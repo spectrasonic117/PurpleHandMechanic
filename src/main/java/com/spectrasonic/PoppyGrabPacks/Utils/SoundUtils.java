@@ -1,15 +1,14 @@
-package com.spectrasonic.PurpleHandMechanic.Utils;
+package com.spectrasonic.PoppyGrabPacks.Utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 
-public final class SoundUtils {
+import lombok.experimental.UtilityClass;
 
-    private SoundUtils() {
-        // Private constructor to prevent instantiation
-    }
+@UtilityClass
+public final class SoundUtils {
 
     public static void playerSound(Player player, Sound sound, float volume, float pitch) {
         player.playSound(player, sound, SoundCategory.MASTER, volume, pitch);
