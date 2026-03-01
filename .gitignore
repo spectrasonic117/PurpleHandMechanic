@@ -1,9 +1,11 @@
 # User-specific stuff
 .idea/
-
+.kilocode/**
 *.iml
 *.ipr
 *.iws
+
+AGENTS.md
 
 # IntelliJ
 out/

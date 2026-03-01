@@ -17,6 +17,8 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+
+    maven { url = "https://maven.devs.beer/" }
 }
 
 dependencies {
@@ -30,6 +32,9 @@ dependencies {
     // Minimessage - Adventure
     implementation "net.kyori:adventure-text-minimessage:${minimessage}"
     implementation "net.kyori:adventure-api:${minimessage}"
+
+    // ItemsAdder
+    compileOnly "dev.lone:api-itemsadder:${itemsAdder}"
 
 }
 
