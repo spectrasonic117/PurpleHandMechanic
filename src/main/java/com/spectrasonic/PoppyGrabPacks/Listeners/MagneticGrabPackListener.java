@@ -1,6 +1,6 @@
 package com.spectrasonic.PoppyGrabPacks.Listeners;
 
-import com.spectrasonic.PoppyGrabPacks.Items.ItemsAdderUtils;
+import com.spectrasonic.PoppyGrabPacks.Items.block.YellowBlock;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -23,7 +23,7 @@ public class MagneticGrabPackListener implements Listener {
         }
 
         // Verificar si el bloque clickeado es el yellow_block de ItemsAdder
-        if (ItemsAdderUtils.isYellowBlock(clickedBlock)) {
+        if (YellowBlock.isBlock(clickedBlock)) {
             event.setCancelled(true);
             handleYellowBlockEffect(event.getPlayer());
         }

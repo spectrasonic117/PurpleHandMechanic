@@ -1,6 +1,6 @@
 package com.spectrasonic.PoppyGrabPacks.Listeners;
 
-import com.spectrasonic.PoppyGrabPacks.Items.ItemsAdderUtils;
+import com.spectrasonic.PoppyGrabPacks.Items.block.PurpleBlock;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -24,7 +24,7 @@ public class PurpleGrapPackListener implements Listener {
         }
 
         // Verificar si el bloque clickeado es el purple_block de ItemsAdder
-        if (ItemsAdderUtils.isPurpleBlock(clickedBlock)) {
+        if (PurpleBlock.isBlock(clickedBlock)) {
             event.setCancelled(true);
             handlePurpleBlockEffect(event.getPlayer());
         }

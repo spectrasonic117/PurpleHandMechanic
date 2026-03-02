@@ -1,6 +1,6 @@
 package com.spectrasonic.PoppyGrabPacks.Listeners;
 
-import com.spectrasonic.PoppyGrabPacks.Items.ItemsAdderUtils;
+import com.spectrasonic.PoppyGrabPacks.Items.item.OrangeGrabpackItem;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,7 +30,7 @@ public class OrangeGrapPackListener implements Listener {
         ItemStack item = player.getInventory().getItemInMainHand();
 
         // Verificar si es el orange_grabpack usando ItemsAdderUtils
-        if (!ItemsAdderUtils.isOrangeGrabPack(item))
+        if (!OrangeGrabpackItem.isItem(item))
             return;
 
         // Play the cast sound
