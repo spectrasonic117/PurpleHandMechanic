@@ -1,4 +1,5 @@
 plugins {
+    id "com.gradleup.shadow" version "${shadowJar}"
     id("io.papermc.paperweight.userdev") version "${gradlePaperweight}"
     id "java"
 }
@@ -19,6 +20,8 @@ repositories {
     }
 
     maven { url = "https://maven.devs.beer/" }
+
+    maven { url = "https://repo.aikar.co/content/groups/aikar/" }
 }
 
 dependencies {
@@ -36,20 +39,20 @@ dependencies {
     // ItemsAdder
     compileOnly "dev.lone:api-itemsadder:${itemsAdder}"
 
+    implementation "co.aikar:acf-paper:${acfaikar}"
+
 }
 
-jar {
+
+shadowJar {
+    relocate "co.aikar.commands", "com.spectrasonic.PoppyGrabPacks.acf"
+    relocate "co.aikar.locales", "com.spectrasonic.PoppyGrabPacks.locales"
     destinationDirectory = file("${rootDir}/out")
     archiveFileName = "${rootProject.name}-${version}.jar"
 }
 
-// shadowJar {
-//     relocate "co.aikar.commands", "com.spectrasonic.PoppyGrabPacks.acf"
-//     relocate "co.aikar.locales", "com.spectrasonic.PoppyGrabPacks.locales"
-// }
 
-
-// build.dependsOn shadowJar
+build.dependsOn shadowJar
 build.finalizedBy reobfJar
 
 def targetJavaVersion = "${javaversion}"
