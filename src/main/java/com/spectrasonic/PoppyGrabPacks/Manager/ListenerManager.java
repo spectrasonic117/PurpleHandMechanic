@@ -14,6 +14,7 @@ public class ListenerManager {
     }
 
     public void registerListener() {
+        // Listeners de GrabPacks
         plugin.getServer().getPluginManager().registerEvents(new PurpleGrapPackListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new OrangeGrapPackListener(plugin), plugin);
         plugin.getServer().getPluginManager().registerEvents(new MagneticGrabPackListener(), plugin);

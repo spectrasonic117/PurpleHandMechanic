@@ -1,6 +1,8 @@
 package com.spectrasonic.PoppyGrabPacks.Listeners;
 
+import com.spectrasonic.PoppyGrabPacks.Items.ItemsAdderUtils;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,16 +13,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import com.spectrasonic.PoppyGrabPacks.Items.OrangeGrabPack;
 import com.spectrasonic.PoppyGrabPacks.Main;
 
 public class OrangeGrapPackListener implements Listener {
     private final Main plugin;
-    private final OrangeGrabPack orangeGrabPack;
 
     public OrangeGrapPackListener(Main plugin) {
         this.plugin = plugin;
-        this.orangeGrabPack = new OrangeGrabPack();
     }
 
     @EventHandler
@@ -29,11 +28,13 @@ public class OrangeGrapPackListener implements Listener {
             return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
-        if (!orangeGrabPack.isSimilar(item))
+
+        // Verificar si es el orange_grabpack usando ItemsAdderUtils
+        if (!ItemsAdderUtils.isOrangeGrabPack(item))
             return;
 
         // Play the cast sound
-        player.playSound(player.getLocation(), "minecraft:castfast", 1.0f, 1.0f);
+        player.playSound(player.getLocation(), Sound.BLOCK_LAVA_POP, 1.0f, 1.0f);
 
         // Get the direction the player is looking
         Vector direction = player.getLocation().getDirection();

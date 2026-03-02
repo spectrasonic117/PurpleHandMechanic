@@ -1,70 +1,52 @@
 package com.spectrasonic.PoppyGrabPacks.Listeners;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
+import com.spectrasonic.PoppyGrabPacks.Items.ItemsAdderUtils;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
-
-import com.spectrasonic.PoppyGrabPacks.Items.MagneticGrabPack;
 
 public class MagneticGrabPackListener implements Listener {
-    private final MagneticGrabPack magneticGrabPack;
-
-    public MagneticGrabPackListener() {
-        this.magneticGrabPack = new MagneticGrabPack();
-    }
 
     @EventHandler
-    public void onPlayerFish(PlayerFishEvent event) {
-        if (event.getState() != PlayerFishEvent.State.IN_GROUND) {
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
 
         Player player = event.getPlayer();
-        if (!isHoldingMagneticGrabPack(player)) {
+        ItemStack item = player.getInventory().getItemInMainHand();
+
+        // Verificar si es el magnetic_grabpack usando ItemsAdderUtils
+        if (!ItemsAdderUtils.isMagneticGrabPack(item)) {
             return;
         }
 
-        FishHook hook = event.getHook();
-        Block targetBlock = hook.getLocation().getBlock();
-
-        if (targetBlock.getType() != Material.YELLOW_GLAZED_TERRACOTTA) {
+        Block clickedBlock = event.getClickedBlock();
+        if (clickedBlock == null) {
             return;
         }
 
-        teleportPlayerToHook(player, hook);
-        playTeleportEffects(player, hook);
+        // Verificar si el bloque clickeado es el yellow_block de ItemsAdder
+        if (ItemsAdderUtils.isYellowBlock(clickedBlock)) {
+            event.setCancelled(true);
+            handleYellowBlockEffect(player, clickedBlock);
+        }
     }
 
-    private boolean isHoldingMagneticGrabPack(Player player) {
-        PlayerInventory inventory = player.getInventory();
-        ItemStack mainHand = inventory.getItemInMainHand();
-        ItemStack offHand = inventory.getItemInOffHand();
+    private void handleYellowBlockEffect(Player player, Block block) {
+        // Teleportar al jugador al bloque
+        player.teleport(block.getLocation().add(0.5, 1.5, 0.5));
 
-        return magneticGrabPack.isSimilar(mainHand) || magneticGrabPack.isSimilar(offHand);
-    }
+        // Reproducir sonido de teleport
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0f, 1.0f);
 
-    private void teleportPlayerToHook(Player player, FishHook hook) {
-        Location hookLocation = hook.getLocation().clone();
-        Location teleportLocation = hookLocation.add(0, 1, 0);
-        teleportLocation.setPitch(player.getLocation().getPitch());
-        teleportLocation.setYaw(player.getLocation().getYaw());
-        player.teleport(teleportLocation);
-    }
-
-    private void playTeleportEffects(Player player, FishHook hook) {
-        Location playerLocation = player.getLocation();
-        Location hookLocation = hook.getLocation();
-
-        player.getWorld().spawnParticle(Particle.REVERSE_PORTAL, playerLocation, 30, 0.5, 0.5, 0.5, 0.1);
-        player.getWorld().spawnParticle(Particle.REVERSE_PORTAL, hookLocation, 30, 0.5, 0.5, 0.5, 0.1);
-        player.playSound(playerLocation, "minecraft:entity_enderman_teleport", 1.0f, 1.0f);
+        // Spawn partículas
+        player.getWorld().spawnParticle(Particle.REVERSE_PORTAL, player.getLocation(), 30, 0.5, 0.5, 0.5, 0.1);
     }
 }
