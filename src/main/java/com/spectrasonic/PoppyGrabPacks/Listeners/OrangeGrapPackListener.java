@@ -1,6 +1,9 @@
 package com.spectrasonic.PoppyGrabPacks.Listeners;
 
 import com.spectrasonic.PoppyGrabPacks.Items.ItemsAdderUtils;
+
+import lombok.RequiredArgsConstructor;
+
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.Particle;
@@ -15,12 +18,9 @@ import org.bukkit.util.Vector;
 
 import com.spectrasonic.PoppyGrabPacks.Main;
 
+@RequiredArgsConstructor
 public class OrangeGrapPackListener implements Listener {
     private final Main plugin;
-
-    public OrangeGrapPackListener(Main plugin) {
-        this.plugin = plugin;
-    }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {

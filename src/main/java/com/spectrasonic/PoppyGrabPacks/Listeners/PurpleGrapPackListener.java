@@ -8,22 +8,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 public class PurpleGrapPackListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-            return;
-        }
-
-        Player player = event.getPlayer();
-        ItemStack item = player.getInventory().getItemInMainHand();
-
-        // Verificar si es el purple_grabpack usando ItemsAdderUtils
-        if (!ItemsAdderUtils.isPurpleGrabPack(item)) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
 
@@ -35,7 +26,7 @@ public class PurpleGrapPackListener implements Listener {
         // Verificar si el bloque clickeado es el purple_block de ItemsAdder
         if (ItemsAdderUtils.isPurpleBlock(clickedBlock)) {
             event.setCancelled(true);
-            handlePurpleBlockEffect(player);
+            handlePurpleBlockEffect(event.getPlayer());
         }
     }
 
