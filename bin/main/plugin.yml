@@ -3,4 +3,7 @@ version: "${version}"
 main: com.spectrasonic.PoppyGrabPacks.Main
 api-version: "1.21"
 authors: [Spectrasonic]
-depends: ["ItemsAdder"]
+
+permissions:
+    poppygrabpacks.admin:
+        default: op

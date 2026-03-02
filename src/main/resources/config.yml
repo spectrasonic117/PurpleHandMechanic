@@ -1,0 +1,8 @@
+# Configuración del plugin PoppyGrabPacks
+
+# Configuración del Purple GrabPack
+purple_grabpack:
+  # Fuerza hacia adelante (multiplicador de dirección)
+  forward_force: 0.3
+  # Fuerza hacia arriba (salto)
+  upward_force: 0.9

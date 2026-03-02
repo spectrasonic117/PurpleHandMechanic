@@ -1,5 +1,9 @@
 name: PoppyGrabPacks
-version: '${version}'
+version: "${version}"
 main: com.spectrasonic.PoppyGrabPacks.Main
-api-version: '1.21'
+api-version: "1.21"
 authors: [Spectrasonic]
+
+permissions:
+    poppygrabpacks.admin:
+        default: op
