@@ -1,6 +1,7 @@
 package com.spectrasonic.PoppyGrabPacks.Listeners;
 
 import com.spectrasonic.PoppyGrabPacks.Items.block.YellowBlock;
+import org.bukkit.FluidCollisionMode;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -9,24 +10,39 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.Location;
+import org.bukkit.util.RayTraceResult;
 
 public class MagneticGrabPackListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
 
-        Block clickedBlock = event.getClickedBlock();
-        if (clickedBlock == null) {
-            return;
-        }
+        Player player = event.getPlayer();
+        
+        // Realizar ray trace para detectar bloques a distancia
+        RayTraceResult result = player.getWorld().rayTraceBlocks(
+            player.getEyeLocation(),           // Punto de inicio (ojo del jugador)
+            player.getLocation().getDirection(), // Dirección en la que mira el jugador
+            50,                                // Distancia máxima (50 bloques)
+            FluidCollisionMode.NEVER          // No colisionar con fluidos
+        );
 
-        // Verificar si el bloque clickeado es el yellow_block de ItemsAdder
-        if (YellowBlock.isBlock(clickedBlock)) {
+        // Verificar si el ray trace golpeó un bloque
+        if (result != null && result.getHitBlock() != null) {
+            Block hitBlock = result.getHitBlock();
+            
+            // Verificar si el bloque golpeado es el yellow_block de ItemsAdder
+            if (YellowBlock.isBlock(hitBlock)) {
+                event.setCancelled(true);
+                handleYellowBlockEffect(player, hitBlock);
+            }
+        } else if (event.getClickedBlock() != null && YellowBlock.isBlock(event.getClickedBlock())) {
+            // También verificar el bloque clickeado tradicionalmente por si está cerca
             event.setCancelled(true);
-            handleYellowBlockEffect(event.getPlayer(), clickedBlock);
+            handleYellowBlockEffect(player, event.getClickedBlock());
         }
     }
 
@@ -39,6 +55,11 @@ public class MagneticGrabPackListener implements Listener {
 
         // Calcular la ubicación encima del bloque para teletransportar al jugador
         Location teleportLocation = clickedBlock.getLocation().add(0.5, 1, 0.5);
+        
+        // Mantener el yaw y pitch actuales del jugador para preservar la dirección de la vista
+        teleportLocation.setYaw(player.getLocation().getYaw());
+        teleportLocation.setPitch(player.getLocation().getPitch());
+        
         player.teleport(teleportLocation);
     }
 

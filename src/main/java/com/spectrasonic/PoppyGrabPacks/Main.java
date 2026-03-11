@@ -1,7 +1,6 @@
 package com.spectrasonic.PoppyGrabPacks;
 
-import co.aikar.commands.BukkitCommandManager;
-import com.spectrasonic.PoppyGrabPacks.Commands.GrabPacksCommand;
+import com.spectrasonic.PoppyGrabPacks.Manager.CommandManager;
 import com.spectrasonic.PoppyGrabPacks.Manager.ConfigManager;
 import com.spectrasonic.PoppyGrabPacks.Manager.ListenerManager;
 import com.spectrasonic.PoppyGrabPacks.Utils.MessageUtils;
@@ -16,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class Main extends JavaPlugin {
 
     private ConfigManager configManager;
-    private BukkitCommandManager commandManager;
+    private CommandManager commandManager;
 
     @Override
     public void onEnable() {
@@ -45,9 +44,7 @@ public final class Main extends JavaPlugin {
     }
 
     public void registerCommands() {
-        commandManager = new BukkitCommandManager(this);
-
-        commandManager.registerCommand(new GrabPacksCommand());
-
+        commandManager = new CommandManager(this);
+        commandManager.registerCommands();
     }
 }
