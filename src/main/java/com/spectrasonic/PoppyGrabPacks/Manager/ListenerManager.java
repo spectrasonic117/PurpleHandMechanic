@@ -1,6 +1,6 @@
 package com.spectrasonic.PoppyGrabPacks.Manager;
 
-import com.spectrasonic.PoppyGrabPacks.Listeners.MagneticGrabPackListener;
+import com.spectrasonic.PoppyGrabPacks.Listeners.BlueGrabPackListener;
 import com.spectrasonic.PoppyGrabPacks.Listeners.OrangeGrapPackListener;
 import com.spectrasonic.PoppyGrabPacks.Listeners.PurpleGrapPackListener;
 import com.spectrasonic.PoppyGrabPacks.Main;
@@ -17,6 +17,6 @@ public class ListenerManager {
         // Listeners de GrabPacks
         plugin.getServer().getPluginManager().registerEvents(new PurpleGrapPackListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new OrangeGrapPackListener(plugin), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new MagneticGrabPackListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new BlueGrabPackListener(), plugin);
     }
 }

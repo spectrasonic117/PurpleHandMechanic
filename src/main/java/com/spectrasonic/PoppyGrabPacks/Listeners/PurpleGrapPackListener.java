@@ -11,11 +11,22 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
+import com.spectrasonic.PoppyGrabPacks.Items.item.PurpleGrabpackItem;
+import org.bukkit.inventory.ItemStack;
+
 public class PurpleGrapPackListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
+
+        Player player = event.getPlayer();
+        
+        // Verificar si el jugador tiene el purple_grabpack en la mano
+        ItemStack itemInHand = player.getInventory().getItemInMainHand();
+        if (!PurpleGrabpackItem.isItem(itemInHand)) {
             return;
         }
 

@@ -3,9 +3,9 @@ package com.spectrasonic.PoppyGrabPacks.Items.item;
 import dev.lone.itemsadder.api.CustomStack;
 import org.bukkit.inventory.ItemStack;
 
-public class MagneticGrabpackItem {
+public class BlueGrabpackItem {
 
-    public static final String ID = "poppy:magnetic_grabpack";
+    public static final String ID = "poppy:blue_grabpack";
 
     public static CustomStack getCustomStack() {
         return CustomStack.getInstance(ID);
@@ -21,9 +21,11 @@ public class MagneticGrabpackItem {
     }
 
     public static boolean isItem(ItemStack itemStack) {
-        if (itemStack == null) return false;
+        if (itemStack == null)
+            return false;
         CustomStack customStack = CustomStack.byItemStack(itemStack);
-        if (customStack == null) return false;
+        if (customStack == null)
+            return false;
         return customStack.getNamespacedID().equalsIgnoreCase(ID);
     }
 }

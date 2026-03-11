@@ -12,7 +12,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.Location;
 import org.bukkit.util.RayTraceResult;
 
-public class MagneticGrabPackListener implements Listener {
+import com.spectrasonic.PoppyGrabPacks.Items.item.BlueGrabpackItem;
+import org.bukkit.inventory.ItemStack;
+
+public class BlueGrabPackListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -22,18 +25,24 @@ public class MagneticGrabPackListener implements Listener {
 
         Player player = event.getPlayer();
         
+        // Verificar si el jugador tiene el blue_grabpack en la mano
+        ItemStack itemInHand = player.getInventory().getItemInMainHand();
+        if (!BlueGrabpackItem.isItem(itemInHand)) {
+            return;
+        }
+
         // Realizar ray trace para detectar bloques a distancia
         RayTraceResult result = player.getWorld().rayTraceBlocks(
-            player.getEyeLocation(),           // Punto de inicio (ojo del jugador)
-            player.getLocation().getDirection(), // Dirección en la que mira el jugador
-            50,                                // Distancia máxima (50 bloques)
-            FluidCollisionMode.NEVER          // No colisionar con fluidos
+                player.getEyeLocation(), // Punto de inicio (ojo del jugador)
+                player.getLocation().getDirection(), // Dirección en la que mira el jugador
+                50, // Distancia máxima (50 bloques)
+                FluidCollisionMode.NEVER // No colisionar con fluidos
         );
 
         // Verificar si el ray trace golpeó un bloque
         if (result != null && result.getHitBlock() != null) {
             Block hitBlock = result.getHitBlock();
-            
+
             // Verificar si el bloque golpeado es el yellow_block de ItemsAdder
             if (YellowBlock.isBlock(hitBlock)) {
                 event.setCancelled(true);
@@ -55,11 +64,12 @@ public class MagneticGrabPackListener implements Listener {
 
         // Calcular la ubicación encima del bloque para teletransportar al jugador
         Location teleportLocation = clickedBlock.getLocation().add(0.5, 1, 0.5);
-        
-        // Mantener el yaw y pitch actuales del jugador para preservar la dirección de la vista
+
+        // Mantener el yaw y pitch actuales del jugador para preservar la dirección de
+        // la vista
         teleportLocation.setYaw(player.getLocation().getYaw());
         teleportLocation.setPitch(player.getLocation().getPitch());
-        
+
         player.teleport(teleportLocation);
     }
 
