@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.Location;
 
 public class MagneticGrabPackListener implements Listener {
 
@@ -25,18 +26,20 @@ public class MagneticGrabPackListener implements Listener {
         // Verificar si el bloque clickeado es el yellow_block de ItemsAdder
         if (YellowBlock.isBlock(clickedBlock)) {
             event.setCancelled(true);
-            handleYellowBlockEffect(event.getPlayer());
+            handleYellowBlockEffect(event.getPlayer(), clickedBlock);
         }
     }
 
-    private void handleYellowBlockEffect(Player player) {
+    private void handleYellowBlockEffect(Player player, Block clickedBlock) {
         // Spawn partículas de portal inverso
         player.getWorld().spawnParticle(Particle.REVERSE_PORTAL, player.getLocation(), 30, 0.5, 0.5, 0.5, 0.1);
 
         // Reproducir sonido de portal
         player.playSound(player.getLocation(), "minecraft:portal.trigger", 1.0f, 1.0f);
 
-        // teletransportar al jugador 5 bloques hacia arriba
-        player.teleport(player.getLocation().add(0, 5, 0));
+        // Calcular la ubicación encima del bloque para teletransportar al jugador
+        Location teleportLocation = clickedBlock.getLocation().add(0.5, 1, 0.5);
+        player.teleport(teleportLocation);
     }
+
 }

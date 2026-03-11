@@ -6,7 +6,7 @@
 *.iws
 bin/**
 AGENTS.md
-
+bin/
 # IntelliJ
 out/
 # mpeltonen/sbt-idea plugin
