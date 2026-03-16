@@ -23,7 +23,7 @@ public class PurpleGrapPackListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        
+
         // Verificar si el jugador tiene el purple_grabpack en la mano
         ItemStack itemInHand = player.getInventory().getItemInMainHand();
         if (!PurpleGrabpackItem.isItem(itemInHand)) {
@@ -55,7 +55,7 @@ public class PurpleGrapPackListener implements Listener {
         player.setVelocity(velocity);
 
         // Valores estáticos para sonido y partículas
-        player.playSound(player.getLocation(), "minecraft:retrieve1", 1.0f, 1.0f);
+        player.playSound(player.getLocation(), "poppy:purple_grabpack", 1.0f, 1.0f);
         player.getWorld().spawnParticle(Particle.END_ROD, player.getLocation(), 20, 0.5, 0.5, 0.5, 0.0);
     }
 }

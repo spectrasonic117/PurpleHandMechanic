@@ -24,7 +24,7 @@ public class BlueGrabPackListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        
+
         // Verificar si el jugador tiene el blue_grabpack en la mano
         ItemStack itemInHand = player.getInventory().getItemInMainHand();
         if (!BlueGrabpackItem.isItem(itemInHand)) {
@@ -35,7 +35,7 @@ public class BlueGrabPackListener implements Listener {
         RayTraceResult result = player.getWorld().rayTraceBlocks(
                 player.getEyeLocation(), // Punto de inicio (ojo del jugador)
                 player.getLocation().getDirection(), // Dirección en la que mira el jugador
-                50, // Distancia máxima (50 bloques)
+                15, // Distancia máxima (15 bloques)
                 FluidCollisionMode.NEVER // No colisionar con fluidos
         );
 
@@ -60,7 +60,7 @@ public class BlueGrabPackListener implements Listener {
         player.getWorld().spawnParticle(Particle.REVERSE_PORTAL, player.getLocation(), 30, 0.5, 0.5, 0.5, 0.1);
 
         // Reproducir sonido de portal
-        player.playSound(player.getLocation(), "minecraft:portal.trigger", 1.0f, 1.0f);
+        player.playSound(player.getLocation(), "poppy:purple_grabpack", 1.0f, 1.0f);
 
         // Calcular la ubicación encima del bloque para teletransportar al jugador
         Location teleportLocation = clickedBlock.getLocation().add(0.5, 1, 0.5);
